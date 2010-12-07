@@ -1,0 +1,3 @@
+lxml
+httplib2
+sphinx
