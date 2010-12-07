@@ -9,9 +9,10 @@ class Track(BaseModel):
     image = fields.StringField()
     duration = fields.IntegerField()
     track_number = fields.IntegerField(api_path='trackNum')
+    asin = fields.StringField(api_path='.//meta[@rel="http://www.amazon.com/dmusic/albumASIN"]')
 
     def __repr__(self):
-        return '%s - %s [%s]' % (self.creator, self.title, self.album)
+        return '[%s] %s - %s' % (self.asin, self.creator, self.title)
 
     
 class TrackQuery(BaseQuery):

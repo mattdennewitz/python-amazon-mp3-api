@@ -96,11 +96,11 @@ class BaseQuery(object):
         except Exception, exc:
             raise Exception('Parsing response failed: %s' % exc)
 
-        result_set = response_doc.xpath('//results/result')
+        path = '//results/result/' + cls._meta.response_enclosure
+        result_set = response_doc.xpath(path)
 
-        for result in result_set:
-            node = result[0]
-            raise NotImplemetedError
+        for node in result_set:
+            yield cls._meta.object_class._from_xml(node)
 
     def search(self, query, media_type='track', per_page=50, page_number=1,
                ordering='salesrank', match_criteria='field-keywords'):
