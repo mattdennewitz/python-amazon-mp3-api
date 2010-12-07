@@ -3,21 +3,7 @@ from lxml import etree
 from amazonmp3.connection import AmazonMp3Connection
 
 
-class BaseField(object):
 
-    def __init__(self, field_name=None, api_path=None, default=None):
-        self.field_name = field_name
-        self.api_path = api_path
-        self.default = default
-
-    def __get__(self, instance, owner):
-        value = instance._data.get(self.field_name)
-        if value is None:
-            return self.default
-        return value
-
-    def __set__(self, instance, value):
-        instance._data[self.field_name] = value
 
 
 class QueryOptionSet(object):
@@ -76,6 +62,23 @@ class AmazonModelMetaclass(AmazonMetaclass):
         return new_cls
 
 
+class BaseField(object):
+
+    def __init__(self, field_name=None, api_path=None, default=None):
+        self.field_name = field_name
+        self.api_path = api_path
+        self.default = default
+
+    def __get__(self, instance, owner):
+        value = instance._data.get(self.field_name)
+        if value is None:
+            return self.default
+        return value
+
+    def __set__(self, instance, value):
+        instance._data[self.field_name] = value
+
+
 class BaseQuery(object):
     __metaclass__ = AmazonMetaclass
 
@@ -97,8 +100,8 @@ class BaseQuery(object):
 
         for result in result_set:
             node = result[0]
-            print cls._meta.object_class._from_xml(node)
-        
+            raise NotImplemetedError
+
     def search(self, query, media_type='track', per_page=50, page_number=1,
                ordering='salesrank', match_criteria='field-keywords'):
         """Eagerly request a page of results.
