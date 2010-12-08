@@ -1,8 +1,11 @@
+from datetime import date
+from time import strptime
+
 from amazonmp3.base import BaseField
 
 
 __all__ = ['StringField', 'IntegerField', 'ObjectField',
-           'ListField', 'Field']
+           'ListField', 'Field', 'DateField']
 
 
 class Field(BaseField):
@@ -21,6 +24,16 @@ class IntegerField(Field):
 
     def to_python(self, value):
         return int(value)
+
+
+class DateField(Field):
+
+    def __init__(self, format='%Y-%m-%d', *args, **kwargs):
+        self.format = format
+        super(DateField, self).__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        return date(*strptime(value, self.format)[:3])
 
 
 class ObjectField(Field):

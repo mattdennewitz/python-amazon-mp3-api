@@ -58,7 +58,8 @@ class AmazonModelMetaclass(type):
 
 class BaseField(object):
 
-    def __init__(self, field_name=None, api_path=None, default=None):
+    def __init__(self, field_name=None, api_path=None, default=None,
+                 converter=None):
         self.field_name = field_name
         self.api_path = api_path
         self.default = default
