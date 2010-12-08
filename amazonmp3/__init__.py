@@ -1,4 +1,4 @@
-from amazonmp3.tracks.query import TrackQuery
+from tracks.query import TrackQuery
 
 
 __all__ = ['TrackQuery']
