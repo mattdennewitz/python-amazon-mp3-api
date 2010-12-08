@@ -16,6 +16,7 @@ setup(
     author_email='mattdennewitz@gmail.com',
     url='http://github.com/mattdennewitz/python-amazon-mp3-api/tree/master',
     packages=find_packages(),
+    install_requires=['lxml', 'sphinx', 'httplib2'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
