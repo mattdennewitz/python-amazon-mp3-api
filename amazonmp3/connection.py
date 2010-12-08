@@ -17,9 +17,6 @@ class AmazonMp3Connection(object):
         """Make an HTTP request.
         """
 
-        headers = headers or {}
-        body = body or {}
-
         # make request
         response, content = self.connection.request(url, method, body, 
                                                     headers)

@@ -1,15 +1,12 @@
 import os
 from setuptools import setup, find_packages
 
-from amazonmp3 import get_version
-
-
 readme_copy = open(os.path.join(os.path.dirname(__file__), 
                                 'README.rst')).read()
 
 setup(
     name='python-amazon-mp3-api',
-    version=get_version(),
+    version='0.0.1',
     description='Amazon MP3 API wrapper',
     long_description=readme_copy,
     author='Matt Dennewitz',
