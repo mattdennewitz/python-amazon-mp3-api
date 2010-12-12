@@ -27,14 +27,11 @@ class AmazonQuery(object):
         for node in result_set:
             yield cls._meta.object_class._from_xml(node)
 
-    def search(self, query, media_type='track', per_page=50, page_number=1,
+    def search(self, query, per_page=50, page_number=1,
                ordering='salesrank', match_criteria='field-keywords'):
         """Eagerly request a page of results.
 
         :param query: Amazon search query. *Required*
-        :param media_type: Media type constraint. 
-                           One of "track", "album" or "artist".
-                           Default is "track". *Required*
         :param per_page: Objects per page. Default (and max) is 50.
         :param page_number: Result set page number. Default is 1.
         :param ordering: Optional sort parameter. Default is 'salesrank'.
@@ -48,7 +45,7 @@ class AmazonQuery(object):
         # translate clean args into what amazon expects
         query_args = {'clientid': self.client_id,
                       'field-keywords': query,
-                      'type': media_type.upper(),
+                      'type': self._meta.media_type.upper(),
                       'pagesize': per_page,
                       'page_number': page_number,
                       'sortby': ordering,

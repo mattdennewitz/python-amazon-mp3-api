@@ -1,7 +1,8 @@
 from amazonmp3.tracks.query import TrackQuery
+from amazonmp3.albums.query import AlbumQuery
 
 
-__all__ = ['TrackQuery']
+__all__ = ['TrackQuery', 'AlbumQuery']
 
 __author__ = 'Matt Dennewitz'
 __version__ = (0, 0, 1)
